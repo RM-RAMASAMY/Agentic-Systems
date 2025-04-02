@@ -1,17 +1,32 @@
-research_task:
+createBlog:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Conduct thorough research on {topic} and create a well-structured blog.
+    Ensure the blog is informative, engaging, and supported by relevant evidence.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A complete blog draft on {topic}, ready for review.
+  agent: BlogWriter
 
-reporting_task:
+reviewBlog:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Review the blog created by the BlogWriter agent on {topic}.
+    Provide constructive feedback or approve the blog for further validation.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A reviewed blog with either approval or detailed feedback for improvement.
+  agent: BlogReviewer
+
+getHumanConsent:
+  description: >
+    Present the reviewed blog to the human user via CLI for validation.
+    Based on the user's input, either approve the blog for publication
+    or send feedback to the BlogWriter agent for further refinement.
+  expected_output: >
+    A decision to either approve the blog or feedback for the BlogWriter agent.
+  agent: humanInput
+
+publish:
+  description: >
+    Publish the final approved blog on the designated platform (markdown file for now).
+    Ensure the blog is formatted correctly, optimized for SEO, and adheres to the platform's guidelines.
+  expected_output: >
+    The blog is successfully published in markdown format and adheres to all guidelines.
+  agent: BlogPoster

@@ -14,11 +14,11 @@ load_dotenv()
 from langtrace_python_sdk import langtrace
 
 # Get the API key from the environment
-langtrace_api_key = os.getenv("LANGTRACE_API_KEY")
-if not langtrace_api_key:
-    raise ValueError("LANGTRACE_API_KEY is not set in the .env file")
+# langtrace_api_key = os.getenv("LANGTRACE_API_KEY")
+# if not langtrace_api_key:
+#     raise ValueError("LANGTRACE_API_KEY is not set in the .env file")
 
-langtrace.init(api_key=langtrace_api_key)
+# langtrace.init(api_key=langtrace_api_key)
 
 from datetime import datetime
 
@@ -30,13 +30,13 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # crew locally, so refrain from adding unnecessary logic into this file.
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
-
+MY_TOPIC = "Containerization vs Virtualization"
 def run():
     """
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs',
+        'topic': MY_TOPIC,
         'current_year': str(datetime.now().year)
     }
     
@@ -51,7 +51,7 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        "topic": "AI LLMs"
+        "topic": MY_TOPIC
     }
     try:
         Edu().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
@@ -74,7 +74,7 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        "topic": "AI LLMs",
+        "topic": MY_TOPIC,
         "current_year": str(datetime.now().year)
     }
     try:
